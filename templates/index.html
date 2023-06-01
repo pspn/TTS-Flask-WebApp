@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Text to Speech</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="mt-5">Text to Speech Converter</h1>
+            <form id="textForm" class="mt-4">
+                <div class="form-group">
+                    <textarea id="text" class="form-control" rows="5" placeholder="Enter text"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Convert to Speech</button>
+            </form>
+            <audio id="player" controls class="mt-4 d-block">
+                <source src="" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <script>
+            $("#textForm").on("submit", function(e) {
+                e.preventDefault();
+                var text = $("#text").val();
+                $.ajax({
+                    url: '/convert',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ text: text }),
+                    success: function() {
+                        var player = document.getElementById('player');
+                        player.src = "/static/text.mp3";
+                        player.play();
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
+

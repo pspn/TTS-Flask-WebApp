@@ -1,12 +1,6 @@
 # TTS-Flask-WebApp
 A web application built with Flask that converts user-input text to speech using Google Cloud Text-to-Speech API.
 
-Sure, here is a basic README.md file template for your project. You can modify it according to your project's requirements.
-
-# Text2Speech-WebApp
-
-Text2Speech-WebApp is a simple Flask-based web application that converts user-input text to speech using Google Cloud Text-to-Speech API.
-
 ## Features
 
 - Converts user-input text into speech

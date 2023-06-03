@@ -1,11 +1,13 @@
 # app.py
 from flask import Flask, request, render_template, redirect, url_for
+from flask import send_file
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
 from flask_login import current_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from forms import LoginForm
 from utils import text_to_speech
 import os
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
@@ -57,9 +59,10 @@ def logout():
 def convert_text_to_speech():
     data = request.get_json()
     text = data['text']
-    output_file = "static/text.mp3"
-    text_to_speech(text, output_file)
-    return {"result": "success"}
+    filename = text_to_speech(text)
+    # Return the URL in the API response
+    return {"result": "success", "filename": filename}
+
 
 if __name__ == "__main__":
     app.run(port=5000)

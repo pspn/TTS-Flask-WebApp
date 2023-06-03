@@ -28,9 +28,9 @@
                     method: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify({ text: text }),
-                    success: function() {
+                    success: function(response) {
                         var player = document.getElementById('player');
-                        player.src = "/static/text.mp3";
+                        player.src = response.filename;
                         player.play();
                     }
                 });
